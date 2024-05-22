@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const schemaValidator = require("./apps/middlewares/schemaValidator");
 
+const AuthenticationController = require("./apps/controllers/AuthenticationController");
 const UserController = require("./apps/controllers/UserController");
 const userSchema = require("./schema/create.user.schema.json");
 
@@ -12,5 +13,6 @@ routes.get("/verify", (req, res) => {
 
 //Create user
 routes.post("/user", schemaValidator(userSchema), UserController.create);
+routes.post("/auth", AuthenticationController.authenticate);
 
 module.exports = routes;

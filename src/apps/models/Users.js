@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const { Model } = require("sequelize");
 const bcryptjs = require("bcryptjs");
+const { password } = require("../../configs/db");
 
 class Users extends Model {
   static init(sequelize) {
@@ -23,6 +24,14 @@ class Users extends Model {
     });
 
     return this;
+  }
+  /**
+   * Usado no Authentication controller para verificar se o password está correto
+   * @param {*} password_hash
+   * @returns
+   */
+  checkPassword(password) {
+    return bcryptjs.compare(password, this.password_hash);
   }
 }
 
