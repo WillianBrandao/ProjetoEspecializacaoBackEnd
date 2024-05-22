@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./database/index"); // importando configuracoes BD
 const express = require("express");
 const routes = require("./routes"); //Importando arquivo de rotas
 
