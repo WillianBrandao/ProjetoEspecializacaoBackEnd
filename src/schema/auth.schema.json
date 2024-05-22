@@ -1,11 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "AuthSchema",
+  "title": "CreateUserSchema",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string"
-    },
     "email": {
       "type": "string"
     },
@@ -13,5 +10,5 @@
       "type": "string"
     }
   },
-  "required": ["name", "email", "password"]
+  "required": ["email", "password"]
 }
