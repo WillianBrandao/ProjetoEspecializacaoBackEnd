@@ -28,4 +28,7 @@ routes.get("/verify/auth", (req, res) => {
   return res.send({ message: "Connected with sucess!" });
 });
 
+//Update user
+routes.put("/user",UserController.update);
+
 module.exports = routes;
