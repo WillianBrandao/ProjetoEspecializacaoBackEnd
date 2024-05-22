@@ -31,4 +31,10 @@ routes.get("/verify/auth", (req, res) => {
 //Update user
 routes.put("/user",UserController.update);
 
+//Delete User
+routes.delete("/user",UserController.delete);
+
+//Get information user
+routes.get("/user", UserController.userProfile);
+
 module.exports = routes;
