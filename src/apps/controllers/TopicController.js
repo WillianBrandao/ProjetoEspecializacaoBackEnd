@@ -85,6 +85,30 @@ class TopicController {
 
     return res.status(200).json({ message: "Topic updated!" });
   }
+
+  //list all users topics
+  async listMyTopics(req, res) {
+    const myTopics = await Topics.findAll({
+      where: {
+        revision_owner: req.userId,
+      },
+      order: [["revision_at", "ASC"]],
+    });
+
+    if (!myTopics) {
+      return res.status(400).json({ message: "Failed to list my topics!" });
+    }
+    const formattedData = [];
+    for (const topic of myTopics) {
+      formattedData.push({
+        id: topic.id,
+        description: topic.description,
+        revision_at: topic.revision_at,
+      });
+    }
+
+    return res.status(200).json({ data: formattedData });
+  }
 }
 
 module.exports = new TopicController();

@@ -55,4 +55,9 @@ routes.put(
   TopicController.update
 );
 
+//List all users topics
+routes.get("/my-topics",TopicController.listMyTopics);
+
+
+
 module.exports = routes;
