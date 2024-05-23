@@ -9,6 +9,9 @@ const authSchema = require("./schema/auth.schema.json");
 const UserController = require("./apps/controllers/UserController");
 const userSchema = require("./schema/create.user.schema.json");
 
+const TopicController = require("./apps/controllers/TopicController");
+const topicSchema = require("./schema/create.topic.schema.json");
+
 routes = new Router();
 
 routes.get("/verify", (req, res) => {
@@ -29,12 +32,17 @@ routes.get("/verify/auth", (req, res) => {
 });
 
 //Update user
-routes.put("/user",UserController.update);
+routes.put("/user", UserController.update);
 
 //Delete User
-routes.delete("/user",UserController.delete);
+routes.delete("/user", UserController.delete);
 
 //Get information user
 routes.get("/user", UserController.userProfile);
+
+//Topics
+//Create topic
+routes.post("/topic", schemaValidator(topicSchema), TopicController.create);
+
 
 module.exports = routes;
