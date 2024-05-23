@@ -11,6 +11,7 @@ const userSchema = require("./schema/create.user.schema.json");
 
 const TopicController = require("./apps/controllers/TopicController");
 const topicSchema = require("./schema/create.topic.schema.json");
+const topicUpdateSchema = require("./schema/update.topic.schema.json");
 
 routes = new Router();
 
@@ -44,5 +45,14 @@ routes.get("/user", UserController.userProfile);
 //Create topic
 routes.post("/topic", schemaValidator(topicSchema), TopicController.create);
 
+//Delete topic
+routes.delete("/topic/:id", TopicController.delete);
+
+//Update Topic
+routes.put(
+  "/topic/:id",
+  schemaValidator(topicUpdateSchema),
+  TopicController.update
+);
 
 module.exports = routes;

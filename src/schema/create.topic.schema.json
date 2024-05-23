@@ -10,5 +10,5 @@
       "type": "integer"
     }
   },
-  "required": ["description", "revision_in"]
+  "required": ["description"]
 }

@@ -1,4 +1,5 @@
 const Topics = require("../models/Topics");
+const moment = require("moment");
 
 class TopicController {
   //Create Topic
@@ -16,6 +17,73 @@ class TopicController {
     }
 
     return res.status(200).json({ data: { description, revision_in } });
+  }
+
+  //Delete Topic
+  async delete(req, res) {
+    const { id } = req.params;
+
+    //verifica se Topic pertence ao usuario logado
+    const verifyTopic = await Topics.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!verifyTopic) {
+      return res.status(404).json({ message: "Topic does not exists!" });
+    }
+    if (verifyTopic.revision_owner !== req.userId) {
+      return res
+        .status(401)
+        .json({ message: "You don`t have permission to delete this topic!" });
+    }
+    const deleteTopic = await Topics.destroy({
+      where: {
+        id,
+      },
+    });
+    if (!deleteTopic) {
+      return res.status(404).json({ message: "Failed to delete this topic" });
+    }
+    return res.status(200).json({ message: "Topic deleted" });
+  }
+
+  //Update Topic
+  async update(req, res) {
+    const { id } = req.params;
+    const { description, revision_in } = req.body;
+    //verifica se Topic pertence ao usuario logado
+    const verifyTopic = await Topics.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!verifyTopic) {
+      return res.status(404).json({ message: "Topic does not exists!" });
+    }
+    if (verifyTopic.revision_owner !== req.userId) {
+      return res
+        .status(401)
+        .json({ message: "You don`t have permission to delete this topic!" });
+    }
+    // Define o número de dias para a revisão
+    const daysForRevision = revision_in || 7;
+
+    // Calcula a nova data de revisão usando moment.js
+    const updatedAt = moment(verifyTopic.updated_at);
+    const revisionDate = updatedAt.add(daysForRevision, "days");
+
+    // Atualiza o campo revision_at com a nova data de revisão
+    req.body.revision_at = revisionDate.toDate();
+
+    const TopicUpdate = await Topics.update(req.body, { where: { id } });
+    if (!TopicUpdate) {
+      return res.status(404).json({ message: "Failed to update this topic" });
+    }
+
+    return res.status(200).json({ message: "Topic updated!" });
   }
 }
 
