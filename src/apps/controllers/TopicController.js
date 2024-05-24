@@ -6,6 +6,16 @@ class TopicController {
   async create(req, res) {
     const { description, revision_in } = req.body;
 
+    const verifyTopicDescription = await Topics.findOne({
+      where: {
+        description: description,
+      },
+    });
+
+    if (verifyTopicDescription) {
+      return res.status(400).json({ message: "Topic already exists!" });
+    }
+
     const newTopic = await Topics.create({
       description,
       revision_owner: req.userId,
@@ -53,6 +63,17 @@ class TopicController {
   async update(req, res) {
     const { id } = req.params;
     const { description, revision_in } = req.body;
+
+    const verifyDescription = await Topics.findOne({
+      where:{
+        description: description,
+      },
+    });
+
+    if (verifyDescription) {
+      return res.status(400).json({ message: "Topic already exists!" });
+      
+    }
     //verifica se Topic pertence ao usuario logado
     const verifyTopic = await Topics.findOne({
       where: {
@@ -66,7 +87,7 @@ class TopicController {
     if (verifyTopic.revision_owner !== req.userId) {
       return res
         .status(401)
-        .json({ message: "You don`t have permission to delete this topic!" });
+        .json({ message: "You don`t have permission to update this topic!" });
     }
     // Define o número de dias para a revisão
     const daysForRevision = revision_in || 7;
