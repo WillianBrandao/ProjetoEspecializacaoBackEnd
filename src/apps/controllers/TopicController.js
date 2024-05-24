@@ -72,7 +72,6 @@ class TopicController {
 
     if (verifyDescription) {
       return res.status(400).json({ message: "Topic already exists!" });
-      
     }
     //verifica se Topic pertence ao usuario logado
     const verifyTopic = await Topics.findOne({
