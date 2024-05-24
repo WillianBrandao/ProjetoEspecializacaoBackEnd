@@ -130,6 +130,166 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"email\": \"willian4@example.com\",\r\n    \"password\": \"willian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/auth",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Topics",
+			"item": [
+				{
+					"name": "Topic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"CALCULO\",\r\n    \"revision_in\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/topic",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"topic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topic",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Fisica\",\r\n    \"revision_in\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/topic/2",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"topic",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topics",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/topic/4",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"topic",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topic",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/my-topics",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"my-topics"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -167,32 +327,6 @@
 					],
 					"path": [
 						"verify",
-						"auth"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Authentication",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{ \r\n    \"email\": \"willian4@example.com\",\r\n    \"password\": \"willian\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{API-URL}}/auth",
-					"host": [
-						"{{API-URL}}"
-					],
-					"path": [
 						"auth"
 					]
 				}
