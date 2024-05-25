@@ -64,15 +64,18 @@ class TopicController {
     const { id } = req.params;
     const { description, revision_in } = req.body;
 
-    const verifyDescription = await Topics.findOne({
-      where:{
-        description: description,
-      },
-    });
+    if (description) {
+      const verifyDescription = await Topics.findOne({
+        where: {
+          description: description,
+        },
+      });
 
-    if (verifyDescription) {
-      return res.status(400).json({ message: "Topic already exists!" });
+      if (verifyDescription) {
+        return res.status(400).json({ message: "Topic already exists!" });
+      }
     }
+
     //verifica se Topic pertence ao usuario logado
     const verifyTopic = await Topics.findOne({
       where: {
