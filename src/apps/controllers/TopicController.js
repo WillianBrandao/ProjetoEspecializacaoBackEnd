@@ -1,5 +1,6 @@
 const Topics = require("../models/Topics");
 const moment = require("moment");
+const { Op } = require("sequelize");
 
 class TopicController {
   //Create Topic
@@ -124,7 +125,6 @@ class TopicController {
     const formattedData = [];
     for (const topic of myTopics) {
       formattedData.push({
-        id: topic.id,
         description: topic.description,
         revision_at: topic.revision_at,
       });
@@ -132,6 +132,27 @@ class TopicController {
 
     return res.status(200).json({ data: formattedData });
   }
+
+  //list topics by date
+  async listMyDelayedTopics(req, res) {
+    const today = new Date();
+    const delayedTopics = await Topics.findAll({
+      where: {
+        revision_at: { [Op.lt]: today },
+      },
+      order: [["revision_at", "ASC"]],
+    });
+    const formattedData = [];
+    for (const topic of delayedTopics) {
+      formattedData.push({
+        description: topic.description,
+        revision_at: topic.revision_at,
+      });
+    }
+    return res.status(200).json({ data: formattedData });
+  }
 }
+
+
 
 module.exports = new TopicController();

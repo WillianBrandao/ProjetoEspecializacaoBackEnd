@@ -58,6 +58,9 @@ routes.put(
 //List all users topics
 routes.get("/my-topics",TopicController.listMyTopics);
 
+//List only today and delayed topics
+routes.get("/topic/delayed",TopicController.listMyDelayedTopics)
+
 
 
 module.exports = routes;

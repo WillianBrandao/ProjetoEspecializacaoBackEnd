@@ -31,7 +31,7 @@ Liste as tecnologias, frameworks e bibliotecas utilizadas no projeto. Exemplo:
 - MySql
 
 ## Instalação
-- Configure as informações presentes no arquivo .env.txt em um arquivo .env na raiz do projeto
+- Configure as informações presentes no arquivo .env.txt em um arquivo .env na raiz do projeto e atualize as informações
 - Verifique as configurações do arquivo db.js a serem passadas ao sequelize
 - Execute os comandos
   - npm install
@@ -46,26 +46,13 @@ Antes de começar, verifique se tu  atendeu aos seguintes requisitos:
 
 ### Configuração
 
-Para instalar o Nome do Projeto, siga estes passos:
 
-Linux e macOS:
-
-\`\`\`bash
-sudo apt-get install nome_do_projeto
-\`\`\`
-
-Windows:
-
-\`\`\`bash
-install nome_do_projeto
-\`\`\`
 
 ## Como Usar
-Após a instalação, tu pode usar o projeto da seguinte maneira:
+Após a instalação e configuração do banco de dados, para utilizar o projeto deve se iniciar o servidor
+- npm start
 
-\`\`\`bash
-nome_do_projeto --option ARG
-\`\`\`
+
 
 Inclua exemplos de como usar o projeto. Isso pode ser em forma de código ou linhas de comando. Certifique-se de explicar o que cada comando faz.
 
