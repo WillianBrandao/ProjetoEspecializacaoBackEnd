@@ -1,4 +1,5 @@
 const Topics = require("../models/Topics");
+const Users = require("../models/Users");
 const moment = require("moment");
 const { Op } = require("sequelize");
 
@@ -150,6 +151,23 @@ class TopicController {
       });
     }
     return res.status(200).json({ data: formattedData });
+  }
+  //Listar todos os topicos
+  async listAllTopics(req, res) {
+    const allTopics = await Topics.findAll({
+      order: [["revision_at", "DESC"]],
+      attributes: ["description", "revision_at"],
+      include: [
+        {
+          model: Users,
+          as: "user",
+          required: true,
+          attributes: ["name"],
+        },
+      ],
+    });
+
+    return res.status(200).json({ data: allTopics });
   }
 }
 

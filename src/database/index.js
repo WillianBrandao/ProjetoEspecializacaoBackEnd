@@ -13,7 +13,11 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    models.map((model) => model.init(this.connection));
+    models
+      .map((model) => model.init(this.connection))
+      .map(
+        (model) => model.associate && model.associate(this.connection.models) //associar as informacoes de duas tabelas exemplo imprimir todos os posts separando por usuario
+      );
   }
 }
 module.exports = new Database();
