@@ -4,10 +4,15 @@
 Desenvolvimento de uma api para permitir controle de revisão de estudos de um usuário.
 Assim esse usuário poderá inserir tópicos estudados e um prazo que ele pretende revisar esse tópico.
 Dessa maneira, cada usuário poderá montar um cronograma para si mesmo.
-A princípio a ideia é que aplicação possua duas entidades: Tópico a ser revisado e o usuário. Assim o usuário se cadastra na aplicação e após cadastro fará login e conseguirá adicionar tópicos e o prazo em dias de quando se deseja revisar.  Dessa forma, poderá acompanhar as materias que a revisão está atrasda e atualizar os prazos para novas revisões.
+A princípio a ideia é que aplicação possua duas entidades: Tópico a ser revisado e o usuário. Assim o usuário se cadastra na aplicação e após cadastro fará login e conseguirá adicionar tópicos e o prazo em dias de quando se deseja revisar.  Dessa forma, poderá acompanhar as materias que a revisão está atrasada e atualizar os prazos para novas revisões.
+Dessa maneira, cada usuário terá seu próprio historico de revisões.
+
+### Modelo Diagrama ER
+![Diagrama Entidade Relacionamento do Projeto](./images/diagramaER.png)
+
 
 ## Rotas
-O teste de rotas pode ser feito utilizando a ferramenta Postman ou Insomnia, na pasta collections possui um arquivo "EspecializacaoBack.postman_collection.json" que pode ser importado já com todas as rotas disponivéis para realizar.
+O teste de rotas pode ser feito utilizando a ferramenta Postman ou Insomnia, na pasta collections possui um arquivo `EspecializacaoBack.postman_collection.json` que pode ser importado com todas as rotas disponivéis para realizar.
 Abaixo está uma descrição das rotas e das ações executadas por cada uma.
 
 ### Rotas apenas de teste
@@ -38,6 +43,7 @@ Abaixo está uma descrição das rotas e das ações executadas por cada uma.
 
 - [PROJETO FINAL ESPECIALIZAÇÃO TRAINEE COMP](#projeto-final-especialização-trainee-comp)
   - [Descrição](#descrição)
+    - [Modelo Diagrama ER](#modelo-diagrama-er)
   - [Rotas](#rotas)
     - [Rotas apenas de teste](#rotas-apenas-de-teste)
     - [Rotas para Users](#rotas-para-users)
@@ -90,6 +96,7 @@ Antes de começar, verifique se atendeu aos seguintes requisitos:
 - Para teste das requisições deve se intalar o programa Postman ou Insomnia
 
 ### Configuração
+- Deve se verificar as informações no arquivo `.env` e adequala-las conforme o banco de dados utlizado
 
 
 
@@ -100,7 +107,7 @@ Após a instalação e configuração do banco de dados, para utilizar o projeto
 npm start
 ```
 
-Assim para poder verificar o funcionamento do sistema deve se garantir que os dados do banco de dados tenham sido passadas corretamente no arquivo ".env"como já mencionado. 
+Assim para poder verificar o funcionamento do sistema deve se garantir que os dados do banco de dados tenham sido passadas corretamente no arquivo `.env` como já mencionado. 
 Então deve se iniciar o aplicativo Postman ou Insmonia e testar as requisicoes já importadas.
 
 ## Equipe
