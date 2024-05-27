@@ -29,6 +29,12 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      password_reset_token: {
+        type: Sequelize.STRING,
+      },
+      password_reset_expires: {
+        type: Sequelize.DATE,
+      },
     });
   },
 

@@ -11,6 +11,8 @@ class Users extends Model {
         email: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
+        password_reset_token: Sequelize.STRING,
+        password_reset_expires: Sequelize.DATE,
       },
       {
         sequelize,

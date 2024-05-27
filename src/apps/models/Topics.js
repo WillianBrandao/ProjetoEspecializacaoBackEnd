@@ -10,6 +10,7 @@ class Topics extends Model {
         revision_in: Sequelize.VIRTUAL,
         revision_owner: Sequelize.INTEGER,
         revision_at: Sequelize.DATEONLY,
+
       },
       {
         sequelize,

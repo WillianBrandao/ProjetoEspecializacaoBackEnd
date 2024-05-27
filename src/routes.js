@@ -27,7 +27,12 @@ routes.post(
   AuthenticationController.authenticate
 );
 
+//Esqueci minha senha
+routes.get("/forgot-password", AuthenticationController.forgotPassword);
+
 routes.use(AuthenticationMiddleware);
+
+
 routes.get("/verify/auth", (req, res) => {
   return res.send({ message: "Connected with sucess!" });
 });

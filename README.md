@@ -74,6 +74,10 @@ Utilizado para permitir encriptar o password e o token utilizado
 Utilizado para faciliar a verificação dos dados que devem ser inseridos nas requisiçÕes
 - Jsonwebtoken
 Utilizado par poder gerar um token de autenticação do usuário
+- NodeMailer
+Utilizado para realizar o envio de emails
+- NodeMailer-Express-handlebars
+Utilizado para poder enviar um email com um template de email, sendo possível trabalhar com variaveis para construção
 
 ## Instalação
 - Configure as informações presentes no arquivo .env.txt em um arquivo .env na raiz do projeto e atualize as informações

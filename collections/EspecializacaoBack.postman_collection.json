@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Willian4\",\r\n    \"password\": \"willian\",\r\n    \"email\": \"willian4@example.com\"\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"Willian\",\r\n    \"password\": \"willian\",\r\n    \"email\": \"willian@example.com\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,6 +152,35 @@
 							],
 							"path": [
 								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot-Password",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"willian@example.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/forgot-password",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"forgot-password"
 							]
 						}
 					},
