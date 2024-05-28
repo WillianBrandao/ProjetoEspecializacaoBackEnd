@@ -28,7 +28,10 @@ routes.post(
 );
 
 //Esqueci minha senha
-routes.get("/forgot-password", AuthenticationController.forgotPassword);
+routes.post("/auth/forgot-password", AuthenticationController.forgotPassword);
+
+//Recuperar senha
+routes.post("/auth/reset-password", AuthenticationController.resetPassword);
 
 routes.use(AuthenticationMiddleware);
 

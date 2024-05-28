@@ -3,6 +3,8 @@ const Users = require("../models/Users");
 const { encrypt } = require("../../utils/crypt");
 const crypto = require("crypto");
 const mailer = require("../../modules/mailer");
+const bcryptjs = require("bcryptjs");
+const { where } = require("sequelize");
 
 class AuthenticationController {
   async authenticate(req, res) {
@@ -12,18 +14,18 @@ class AuthenticationController {
     if (email) {
       whereClause.email = email;
     } else {
-      return res.status(401).json({ error: "We need an e-mail or password" });
+      return res.status(400).json({ error: "We need an e-mail or password" });
     }
     const user = await Users.findOne({
       where: whereClause,
     });
 
     if (!user) {
-      return res.status(401).json({ error: "User not found!" });
+      return res.status(400).json({ error: "User not found!" });
     }
     //Veriica se o password é igual ao password usado para o hash
     if (!(await user.checkPassword(password))) {
-      return res.status(401).json({ error: "Password does not match!" });
+      return res.status(400).json({ error: "Password does not match!" });
     }
 
     const { id, email: userEmail } = user;
@@ -38,7 +40,7 @@ class AuthenticationController {
 
     return res.status(200).json({ user: { id, email: userEmail }, token });
   }
-
+  //Rota para enviar email com token
   async forgotPassword(req, res) {
     const { email } = req.body;
 
@@ -49,7 +51,7 @@ class AuthenticationController {
         },
       });
       if (!user) {
-        return res.status(401).json({ error: "User not found!" });
+        return res.status(400).json({ error: "User not found!" });
       }
 
       const token = crypto.randomBytes(20).toString("hex");
@@ -91,6 +93,45 @@ class AuthenticationController {
       );
     } catch (err) {
       res.status(400).send({ error: "Erro on forgot password, try again!" });
+    }
+  }
+
+  //Resetar password
+  async resetPassword(req, res) {
+    const { email, token, password } = req.body; //Mudar para params o token?
+    try {
+      const user = await Users.findOne({
+        where: {
+          email: email,
+        },
+      });
+
+      if (!user) {
+        return res.status(400).json({ error: "User not found!" });
+      }
+
+      if (token !== user.password_reset_token) {
+        return res.status(400).json({ error: "Token invalid!" });
+      }
+
+      const dateNow = new Date();
+      if (dateNow > user.password_reset_expires) {
+        return res.status(400).json({
+          error: "Token already expires. Please generate a new token!",
+        });
+      }
+      const new_password = await bcryptjs.hash(password, 8);
+
+      await Users.update(
+        { password_hash: new_password },
+        { where: { email: email } }
+      );
+      return res
+        .status(200)
+        .send({ message: "Password was changed successfully" });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send({ error: "Cannot reset password, try again!" });
     }
   }
 }

@@ -19,7 +19,14 @@ Abaixo está uma descrição das rotas e das ações executadas por cada uma.
 | Método  | Caminho da rota    | Ação
 |---------| -------------------|--------------
 | GET    	| /verify            | Veririca se o servidor está respondendo
-| GET     | /verify/auth       | Veririca resposta do usuário com se ele estiver logado
+| GET     | /auth/verify       | Veririca resposta do usuário com se ele estiver logado
+
+### Rotas de Autenticação
+| Método    | Caminho da rota        | Ação
+|-----------|------------------------|--------------
+| POST      | /auth                  | Autenticação do usuário
+| POST	    | /auth/forgot-password  | Envia token para o email do usuário
+| POST      | /auth/reset-password   | Reseta a senha do usuário
 
 ### Rotas para Users 
 | Método  | Caminho da rota    | Ação
@@ -28,7 +35,7 @@ Abaixo está uma descrição das rotas e das ações executadas por cada uma.
 | PUT	    | /user	             | Atualiza usuário
 | DELETE  | /user	             | Deleta usuário
 | GET	    | /user              | Obtém informações do usuário
-| POST    | /auth              | Autenticação do usuário
+
 
 ### Rotas para Topics
 | Método  | Caminho da rota    | Ação
@@ -46,6 +53,7 @@ Abaixo está uma descrição das rotas e das ações executadas por cada uma.
     - [Modelo Diagrama ER](#modelo-diagrama-er)
   - [Rotas](#rotas)
     - [Rotas apenas de teste](#rotas-apenas-de-teste)
+    - [Rotas de Autenticação](#rotas-de-autenticação)
     - [Rotas para Users](#rotas-para-users)
     - [Rotas para Topics](#rotas-para-topics)
   - [Índice](#índice)

@@ -159,15 +159,12 @@
 				},
 				{
 					"name": "Forgot-Password",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"willian@example.com\"\r\n    }",
+							"raw": "{\r\n    \"email\": \"willian@example.com\"\r\n\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,12 +172,40 @@
 							}
 						},
 						"url": {
-							"raw": "{{API-URL}}/forgot-password",
+							"raw": "{{API-URL}}/auth/forgot-password",
 							"host": [
 								"{{API-URL}}"
 							],
 							"path": [
+								"auth",
 								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"willian@example.com\",\r\n    \"token\": \"204c9b0bb973eb39a225be66b90877acd3a99bd3\",\r\n    \"password\": \"willian2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/auth/reset-password",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
 							]
 						}
 					},
@@ -419,13 +444,13 @@
 					}
 				],
 				"url": {
-					"raw": "{{API-URL}}/verify/auth",
+					"raw": "{{API-URL}}/auth/verify",
 					"host": [
 						"{{API-URL}}"
 					],
 					"path": [
-						"verify",
-						"auth"
+						"auth",
+						"verify"
 					]
 				}
 			},
