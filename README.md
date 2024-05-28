@@ -7,6 +7,8 @@ Dessa maneira, cada usuário poderá montar um cronograma para si mesmo.
 A princípio a ideia é que aplicação possua duas entidades: Tópico a ser revisado e o usuário. Assim o usuário se cadastra na aplicação e após cadastro fará login e conseguirá adicionar tópicos e o prazo em dias de quando se deseja revisar.  Dessa forma, poderá acompanhar as materias que a revisão está atrasada e atualizar os prazos para novas revisões.
 Dessa maneira, cada usuário terá seu próprio historico de revisões.
 
+Caso o usuário esqueça a senha será permitido ele solicitar a redefinição da mesma sendo enviado para ele um token que deve ser passado na solicitação de redefinição
+
 ### Modelo Diagrama ER
 ![Diagrama Entidade Relacionamento do Projeto](./images/diagramaER.png)
 
