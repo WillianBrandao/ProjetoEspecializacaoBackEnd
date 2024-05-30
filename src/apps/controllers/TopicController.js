@@ -11,6 +11,7 @@ class TopicController {
     const verifyTopicDescription = await Topics.findOne({
       where: {
         description: description,
+        revision_owner: req.userId,
       },
     });
 
@@ -70,6 +71,7 @@ class TopicController {
       const verifyDescription = await Topics.findOne({
         where: {
           description: description,
+          revision_owner: req.userId,
         },
       });
 
