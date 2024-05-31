@@ -9,6 +9,8 @@ Dessa maneira, cada usuário terá seu próprio historico de revisões.
 
 Caso o usuário esqueça a senha será permitido ele solicitar a redefinição da mesma sendo enviado para ele um token que deve ser passado na solicitação de redefinição
 
+Além disso, o projeto pode ser dockerizado para isso siga a documentação em [Docker](DOCKER.md)
+
 ### Modelo Diagrama ER
 ![Diagrama Entidade Relacionamento do Projeto](./images/diagramaER.png)
 
@@ -111,6 +113,7 @@ Antes de começar, verifique se atendeu aos seguintes requisitos:
 
 ### Configuração
 - Deve se verificar as informações no arquivo `.env` e adequala-las conforme o banco de dados utlizado
+- Na pasta env haverá 2 arquivos, um para ser configurado para o docker e outro para rodar sem uso do docker
 
 
 
