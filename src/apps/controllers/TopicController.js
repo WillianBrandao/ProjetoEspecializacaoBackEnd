@@ -11,7 +11,7 @@ class TopicController {
     const verifyTopicDescription = await Topics.findOne({
       where: {
         description: description,
-        revision_owner: req.userId,
+        user_id: req.userId,
       },
     });
 
@@ -21,7 +21,7 @@ class TopicController {
 
     const newTopic = await Topics.create({
       description,
-      revision_owner: req.userId,
+      user_id: req.userId,
       revision_in,
     });
 
@@ -46,7 +46,7 @@ class TopicController {
     if (!verifyTopic) {
       return res.status(404).json({ message: "Topic does not exists!" });
     }
-    if (verifyTopic.revision_owner !== req.userId) {
+    if (verifyTopic.user_id !== req.userId) {
       return res
         .status(401)
         .json({ message: "You don`t have permission to delete this topic!" });
@@ -71,7 +71,7 @@ class TopicController {
       const verifyDescription = await Topics.findOne({
         where: {
           description: description,
-          revision_owner: req.userId,
+          user_id: req.userId,
         },
       });
 
@@ -90,7 +90,7 @@ class TopicController {
     if (!verifyTopic) {
       return res.status(404).json({ message: "Topic does not exists!" });
     }
-    if (verifyTopic.revision_owner !== req.userId) {
+    if (verifyTopic.user_id !== req.userId) {
       return res
         .status(401)
         .json({ message: "You don`t have permission to update this topic!" });
@@ -117,7 +117,7 @@ class TopicController {
   async listMyTopics(req, res) {
     const myTopics = await Topics.findAll({
       where: {
-        revision_owner: req.userId,
+        user_id: req.userId,
       },
       order: [["revision_at", "ASC"]],
     });
