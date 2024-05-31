@@ -13,7 +13,12 @@ const schemaValidator = (schema) => (req, res, next) => {
   if (!result.valid) {
     const messageError = [];
     for (const item of result.errors) {
-      messageError.push(item.message.replace('"', "").replace('"', ""));
+      messageError.push(
+        `${item.path.join(".")} ${item.message
+          .replace('"', "")
+          .replace('"', "")}`
+      );
+    
     }
 
     return res.status(401).send({

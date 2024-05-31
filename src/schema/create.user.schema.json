@@ -10,7 +10,8 @@
       "type": "string"
     },
     "password": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     }
   },
   "required": ["name", "email", "password"]
