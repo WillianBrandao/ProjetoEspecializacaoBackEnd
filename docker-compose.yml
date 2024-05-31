@@ -1,0 +1,38 @@
+services:
+  mysqldb:
+    image: mysql:latest
+    container_name: $MYSQL_NAME
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_TCP_PORT=$MYSQL_DOCKER_PORT
+    ports:
+      - $MYSQL_DOCKER_PORT:$MYSQL_DB_PORT
+    networks:
+      - backend
+    expose:
+      - $MYSQL_DOCKER_PORT
+
+  api:
+    image: node:latest
+    env_file:
+      - .env
+    restart: unless-stopped
+    container_name: $API_NAME
+    ports:
+      - $PORT:$PORT
+    working_dir: "/home/node/project-backend"
+    volumes:
+      - ./:/home/node/project-backend
+    depends_on:
+      - mysqldb
+    command: bash -c "npm install && npx sequelize db:migrate && npm start"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
