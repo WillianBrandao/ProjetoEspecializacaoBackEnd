@@ -75,19 +75,6 @@ class TopicController {
     const { description, revision_in } = req.body;
 
     try {
-      if (description) {
-        const verifyDescription = await Topics.findOne({
-          where: {
-            description: description,
-            user_id: req.userId,
-          },
-        });
-
-        if (verifyDescription) {
-          return res.status(400).json({ message: "Topic already exists!" });
-        }
-      }
-
       //verifica se Topic pertence ao usuario logado
       const verifyTopic = await Topics.findOne({
         where: {
@@ -104,11 +91,24 @@ class TopicController {
           .json({ message: "You don`t have permission to update this topic!" });
       }
 
+      if (description) {
+        const verifyDescription = await Topics.findOne({
+          where: {
+            description: description,
+            user_id: req.userId,
+          },
+        });
+
+        if (verifyDescription) {
+          return res.status(400).json({ message: "Topic already exists!" });
+        }
+      }
+
       //Modifica a data de revision_at
       const daysForRevision = new Date();
       daysForRevision.setDate(
-        daysForRevision.getDate() + revision_in ||
-          process.env.DIAS_PADRAO_PARA_REVISAO
+        daysForRevision.getDate() +
+          (revision_in || parseInt(process.env.DIAS_PADRAO_PARA_REVISAO))
       );
       req.body.revision_at = daysForRevision;
 

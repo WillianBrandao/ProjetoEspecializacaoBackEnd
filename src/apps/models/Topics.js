@@ -19,8 +19,8 @@ class Topics extends Model {
     this.addHook("beforeSave", async (topic) => {
       const now = new Date();
       now.setDate(
-        now.getDate() + topic.revision_in ||
-          process.env.DIAS_PADRAO_PARA_REVISAO
+        now.getDate() +
+          (topic.revision_in || parseInt(process.env.DIAS_PADRAO_PARA_REVISAO))
       );
       topic.revision_at = now;
     });

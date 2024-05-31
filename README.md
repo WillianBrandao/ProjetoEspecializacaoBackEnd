@@ -76,25 +76,21 @@ Liste as tecnologias, frameworks e bibliotecas utilizadas no projeto. Exemplo:
 - Node.js
 - Express
 
-- Sequelize
-Utilizado para facilitar a integração dos modelos das tabelas a serem utilizadas no banco de dados
-- MySql
-Usado para armazenar os dados 
-- bcryptjs
-Utilizado para permitir encriptar o password e o token utilizado 
-- Jsonschema
-Utilizado para faciliar a verificação dos dados que devem ser inseridos nas requisiçÕes
-- Jsonwebtoken
-Utilizado par poder gerar um token de autenticação do usuário
-- NodeMailer
-Utilizado para realizar o envio de emails
-- NodeMailer-Express-handlebars
-Utilizado para poder enviar um email com um template de email, sendo possível trabalhar com variaveis para construção
+- Sequelize</br> Utilizado para facilitar a integração dos modelos das tabelas a serem utilizadas no banco de dados
+- MySql </br> Usado para armazenar os dados 
+- bcryptjs</br> Utilizado para permitir encriptar o password e o token utilizado 
+- Jsonschema</br> Utilizado para faciliar a verificação dos dados que devem ser inseridos nas requisiçÕes
+- Jsonwebtoken</br> Utilizado par poder gerar um token de autenticação do usuário
+- NodeMailer</br> Utilizado para realizar o envio de emails
+- NodeMailer-Express-handlebars</br> Utilizado para poder enviar um email com um template de email, sendo possível trabalhar com variaveis para construção
 
 ## Instalação
-- Configure as informações presentes no arquivo .env.txt em um arquivo .env na raiz do projeto e atualize as informações
+- Configure as informações presentes no arquivo .env.example em um arquivo .env na raiz do projeto e atualize as informações
 - Verifique as configurações do arquivo db.js a serem passadas ao sequelize
 - Execute os comandos
+- Configure o arquivo `env.example`, renomeando para apenas `.env` e corrigindo os dados de acordo com os seus.
+
+
  ```bash
 npm install
 ```
