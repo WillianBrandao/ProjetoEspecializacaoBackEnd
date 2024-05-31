@@ -1,6 +1,6 @@
+require("dotenv").config();
 const Topics = require("../models/Topics");
 const Users = require("../models/Users");
-const moment = require("moment");
 const { Op } = require("sequelize");
 
 class TopicController {
@@ -95,15 +95,14 @@ class TopicController {
         .status(401)
         .json({ message: "You don`t have permission to update this topic!" });
     }
-    // Define o número de dias para a revisão
-    const daysForRevision = revision_in || 7;
 
-    // Calcula a nova data de revisão usando moment.js
-    const updatedAt = moment(verifyTopic.updated_at);
-    const revisionDate = updatedAt.add(daysForRevision, "days");
-
-    // Atualiza o campo revision_at com a nova data de revisão
-    req.body.revision_at = revisionDate.toDate();
+    //Modifica a data de revision_at
+    const daysForRevision = new Date();
+    daysForRevision.setDate(
+      daysForRevision.getDate() + revision_in ||
+        process.env.DIAS_PADRAO_PARA_REVISAO
+    );
+    req.body.revision_at = daysForRevision;
 
     const TopicUpdate = await Topics.update(req.body, { where: { id } });
     if (!TopicUpdate) {
@@ -128,6 +127,7 @@ class TopicController {
     const formattedData = [];
     for (const topic of myTopics) {
       formattedData.push({
+        id: topic.id,
         description: topic.description,
         revision_at: topic.revision_at,
       });
@@ -148,6 +148,7 @@ class TopicController {
     const formattedData = [];
     for (const topic of delayedTopics) {
       formattedData.push({
+        id: topic.id,
         description: topic.description,
         revision_at: topic.revision_at,
       });
@@ -172,7 +173,5 @@ class TopicController {
     return res.status(200).json({ data: allTopics });
   }
 }
-
-
 
 module.exports = new TopicController();
