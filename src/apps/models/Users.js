@@ -36,7 +36,10 @@ class Users extends Model {
     return bcryptjs.compare(password, this.password_hash);
   }
   static associate(models) {
-    this.hasMany(models.Topics, { foreignKey: "user_id", as: "user" });
+    this.hasMany(models.Topics, {
+      foreignKey: "user_id",
+      as: "user",
+    });
   }
 }
 

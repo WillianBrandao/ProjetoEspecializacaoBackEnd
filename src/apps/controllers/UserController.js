@@ -1,4 +1,5 @@
 const Users = require("../models/Users");
+const Topics = require("../models/Topics");
 const bcryptjs = require("bcryptjs"); //Usado em update user
 class UserController {
   //Create user
@@ -101,6 +102,7 @@ class UserController {
 
       return res.status(200).json({ message: "User deleted! " });
     } catch (err) {
+      console.log(err);
       return res.status(500).json({ error: "Falha no servidor!" });
     }
   }

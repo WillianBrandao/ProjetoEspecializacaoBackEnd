@@ -15,6 +15,7 @@ module.exports = {
           model: "users",
           key: "id",
         },
+        onDelete: "CASCADE",
       },
       revision_at: {
         type: Sequelize.DATEONLY,

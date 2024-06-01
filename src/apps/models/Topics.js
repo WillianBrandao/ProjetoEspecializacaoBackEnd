@@ -27,8 +27,13 @@ class Topics extends Model {
     return this;
   }
   static associate(models) {
-    this.belongsTo(models.Users, { foreignKey: "user_id", as: "user" });
+    this.belongsTo(models.Users, {
+      foreignKey: "user_id",
+      as: "user",
+      onDelete: "CASCADE",
+    });
   }
 }
+
 
 module.exports = Topics;
